@@ -1,5 +1,6 @@
 import React from 'react';
 import { slide as Men } from 'react-burger-menu'
+import {Link} from "react-router-dom";
 
 class Menu extends React.Component {
     render(){
@@ -10,9 +11,9 @@ class Menu extends React.Component {
                 </div>
 
                 <Men disableOverlayClick width={300}>
-                    <a id="sysInfo" className="menu-item" >System Information</a>
-                    <a id="homeAuto" className="menu-item" >Home Automation</a>
-                    <a id="settings" className="menu-item" >Settings</a>
+                    <Link to="/" id="sysInfo" className="menu-item" >System Information</Link>
+                    <Link to="/homeAuto" id="homeAuto" className="menu-item" >Home Automation</Link>
+                    <Link to="/settings" className="menu-item" >Settings</Link>
                 </Men>
             </div>
         )

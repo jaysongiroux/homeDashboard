@@ -1,24 +1,25 @@
 import React from 'react';
-import './App.css';
 import './pages/main_window/dashboard.css'
-import SystemInformation from './components/SystemInformation'
-import Menu from './components/Menu'
-import DownContainer from './components/DownContainer'
-import CPUPlot from './components/CPUPlot'
+import SysInfoPage from './pages/main_window/SysInfoPage'
+import HomeAuto from './pages/homeAuto/HomeAutoPage'
 import './pages/main_window/css/materialize.css'
+import Settings from './pages/Settings/Settings'
+
+import {
+    BrowserRouter as Router,
+    Route,
+    Switch
+} from "react-router-dom";
 
 function App() {
     return (
-    <div className="App">
-        <Menu />
-        <div className="container_off">
-            <div className="row">
-                <CPUPlot />
-                <DownContainer />
-                <SystemInformation />
-            </div>
-        </div>
-    </div>
+        <Router>
+            <Switch>
+                <Route exact path="/" ><SysInfoPage/></Route>
+                <Route path="/homeAuto"><HomeAuto /></Route>
+                <Route path="/settings"><Settings /></Route>
+            </Switch>
+        </Router>
   );
 }
 

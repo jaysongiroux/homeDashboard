@@ -44,7 +44,7 @@ class apiLocations extends React.Component{
     currentLoadPlot(){return this.systemInfo + "currentLoadPlot"}
 
     getPingAPI(){return this.base + "getPingAPI"}
-    pingPlotData(){return this.base + "getPingAPI/" + "pingPlotData"}
+    pingPlotData(){return this.base + "getPingAPI/pingPlotData"}
 
 }
 
