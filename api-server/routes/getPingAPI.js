@@ -4,17 +4,16 @@ let ping = require('net-ping');
 
 let data = [];
 let counter = 0;
-let maxDataPoints = 1000;
 
-let setIntervalTimeout = 5000;
+let config = require('../config/config.json');
 
 setInterval(()=>{
-    let target = '8.8.8.8';
+    let target = config["ping_target"];
     let session = ping.createSession();
 
     session.pingHost (target, function (error, target, sent, rcvd) {
         let ms = rcvd - sent;
-        if(data.length >= maxDataPoints) {
+        if(data.length >= config["max_data_points"]) {
             counter = 0;
             data = []
             let msg = {
@@ -30,13 +29,12 @@ setInterval(()=>{
             };
             data.push(msg);
         }
-        counter = counter + setIntervalTimeout /1000;
+        counter = counter + config["interval"] /1000;
     })
-},5000)
-
+},config["interval"]);
 
 router.get('/', function(req, res, next) {
-    let target = '8.8.8.8';
+    let target = config["ping_target"];
     let session = ping.createSession ();
 
     session.pingHost (target, function (error, target, sent, rcvd) {

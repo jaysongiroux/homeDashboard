@@ -1,0 +1,5 @@
+{
+  "max_data_points": 200,
+  "interval": 5000,
+  "ping_target": "8.8.8.8"
+}

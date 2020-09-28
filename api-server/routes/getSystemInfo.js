@@ -4,16 +4,16 @@ let si = require('systeminformation');
 
 let cpuPlotData =[];
 let counter = 0;
-let maxDataPoints = 1000;
 
 let setIntervalTimeout = 5000
+let config = require('../config/config.json');
 
 // https://github.com/sebhildebrandt/systeminformation
 
 setInterval(()=>{
     si.currentLoad()
         .then(data => {
-            if (cpuPlotData.length >= maxDataPoints){
+            if (cpuPlotData.length >= config["max_data_points"]){
                 counter = 0;
                 cpuPlotData = [];
                 let msg = {
@@ -28,9 +28,9 @@ setInterval(()=>{
                 }
                 cpuPlotData.push(msg)
             }
-            counter = counter + setIntervalTimeout /1000
+            counter = counter + config["interval"] /1000
         })
-},5000)
+},config["interval"])
 
 
 router.get('/cpu', function(req, res, next) {
@@ -128,8 +128,6 @@ router.get('/networkStats', function(req, res, next){
             res.send(JSON.stringify(error))
         })
 });
-
-
 
 router.get('/networkInterfaceDefault', function(req, res, next){
     si.networkInterfaceDefault()
