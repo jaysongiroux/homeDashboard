@@ -30,8 +30,16 @@ class MemoryInfo extends React.Component{
         this.getMemInfo();
     }
 
+    componentWillUnmount(){
+        clearInterval(this.memInfo)
+    }
+
     getMemInfo(){
-        setInterval(() => {
+        fetch(this.apiLocations.getMemory())
+            .then(res => res.json())
+            .then( res => this.handleMemInfo(res))
+
+        this.memInfo = setInterval(() => {
             fetch(this.apiLocations.getMemory())
                 .then(res => res.json())
                 .then( res => this.handleMemInfo(res))

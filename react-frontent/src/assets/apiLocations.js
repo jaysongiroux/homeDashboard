@@ -1,9 +1,10 @@
 import React from 'react'
+let config = require('./config');
 
 class apiLocations extends React.Component{
     constructor(props){
         super(props);
-        this.base = "http://192.168.1.21:9000/";
+        this.base = config["api-server-location"];
         this.systemInfo = this.base + "getSystemInfo/";
         this.bindMethods()
     }

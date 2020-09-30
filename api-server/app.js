@@ -11,6 +11,7 @@ let usersRouter = require('./routes/users');
 let testAPIRouter = require('./routes/testAPI');
 let getPingAPI = require('./routes/getPingAPI');
 let getSystemInfo = require('./routes/getSystemInfo');
+let networkSpeedTest = require('./routes/networkSpeedTest')
 
 let app = express();
 
@@ -30,6 +31,7 @@ app.use('/users', usersRouter);
 app.use('/testAPI', testAPIRouter);
 app.use('/getPingAPI', getPingAPI);
 app.use('/getSystemInfo', getSystemInfo);
+app.use('/networkSpeedTest', networkSpeedTest);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

@@ -32,6 +32,10 @@ class SystemInformation extends React.Component{
         this.getNetworkStats();
     }
 
+    componentWillUnmount(){
+
+    }
+
     getNetworkInformation(){
         fetch(this.apiLocations.networkGatewayDefault())
             .then(res => res.json())

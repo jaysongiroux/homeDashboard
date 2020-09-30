@@ -5,7 +5,6 @@ let si = require('systeminformation');
 let cpuPlotData =[];
 let counter = 0;
 
-let setIntervalTimeout = 5000
 let config = require('../config/config.json');
 
 // https://github.com/sebhildebrandt/systeminformation

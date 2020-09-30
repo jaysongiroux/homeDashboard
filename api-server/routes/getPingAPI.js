@@ -12,22 +12,32 @@ setInterval(()=>{
     let session = ping.createSession();
 
     session.pingHost (target, function (error, target, sent, rcvd) {
-        let ms = rcvd - sent;
-        if(data.length >= config["max_data_points"]) {
-            counter = 0;
-            data = []
+        if (error){
             let msg = {
                 x: counter,
-                Ping: ms
+                Ping: 0
             };
-            data.push(msg);
+            data.push(msg)
         }
         else {
-            let msg = {
-                x:counter,
-                Ping:ms
-            };
-            data.push(msg);
+            let ms = rcvd - sent;
+
+            //reset when reach max data points for graph
+            if (data.length >= config["max_data_points"]) {
+                counter = 0;
+                data = []
+                let msg = {
+                    x: counter,
+                    Ping: ms
+                };
+                data.push(msg);
+            } else {
+                let msg = {
+                    x: counter,
+                    Ping: ms
+                };
+                data.push(msg);
+            }
         }
         counter = counter + config["interval"] /1000;
     })

@@ -34,6 +34,10 @@ class CPUInfo extends React.Component{
         this.getCPUCurrentLoad();
     }
 
+    componentWillUnmount(){
+        clearInterval(this.currentCPULoad)
+    }
+
     getCPUInformation(){
         fetch(this.apiLocation.cpu())
             .then(res => res.json())
@@ -41,7 +45,12 @@ class CPUInfo extends React.Component{
     }
 
     getCPUCurrentLoad(){
-        setInterval(() => {
+        // before set Interval is run
+        fetch(this.apiLocation.currentLoad())
+            .then(res => res.json())
+            .then( res => this.handleCPUCurrentLoad(res));
+
+        this.currentCPULoad = setInterval(() => {
             fetch(this.apiLocation.currentLoad())
                 .then(res => res.json())
                 .then( res => this.handleCPUCurrentLoad(res))

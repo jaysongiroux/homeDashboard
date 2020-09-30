@@ -23,8 +23,16 @@ class CPUPlot extends React.Component{
         this.callAPI();
     }
 
+    componentWillUnmount(){
+        clearInterval(this.callAPI)
+    }
+
     callAPI() {
-        setInterval(() => {
+        fetch(this.apiLocations.currentLoadPlot())
+            .then(res => res.json())
+            .then(res => this.handleApiResponse(res));
+
+        this.callAPI =setInterval(() => {
             fetch(this.apiLocations.currentLoadPlot())
                 .then(res => res.json())
                 .then(res => this.handleApiResponse(res))
